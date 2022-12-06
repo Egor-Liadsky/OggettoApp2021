@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    android:orientation="vertical"
+    tools:context=".fragments.createEvent.CreateEventFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="580dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/dark_purple"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/qanelas"
+                android:text="@string/create_event"
+                android:textColor="@color/white"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/titleEditText"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edit_text_corners"
+                android:ems="10"
+                android:fontFamily="@font/qanelas"
+                android:hint="@string/title"
+                android:inputType="textPersonName"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+            <EditText
+                android:id="@+id/descriptionEditText"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edit_text_corners"
+                android:ems="10"
+                android:fontFamily="@font/qanelas"
+                android:hint="@string/description"
+                android:inputType="text|textMultiLine"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+            <EditText
+                android:id="@+id/telegramEditText"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edit_text_corners"
+                android:ems="10"
+                android:fontFamily="@font/qanelas"
+                android:hint="@string/telegram"
+                android:inputType="textPersonName"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+            <EditText
+                android:id="@+id/dateEditText"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edit_text_corners"
+                android:ems="10"
+                android:fontFamily="@font/qanelas"
+                android:hint="@string/date"
+                android:inputType="date"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+            <Button
+                android:id="@+id/createEventButton"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/gray"
+                android:fontFamily="@font/qanelas"
+                android:text="@string/create" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>
