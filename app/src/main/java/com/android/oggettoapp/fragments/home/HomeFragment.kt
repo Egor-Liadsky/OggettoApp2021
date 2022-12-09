@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.android.oggettoapp.R
 import com.android.oggettoapp.adapters.event.EventAdapter
 import com.android.oggettoapp.data.local.entity.EventEntity
+import com.android.oggettoapp.data.local.entity.ParticipantsEvent
 import com.android.oggettoapp.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -25,7 +26,8 @@ class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModels()
     private val adapter = EventAdapter(
-        deleteEvent ={ deleteEventById(it) }
+        participateEvent = { participantEvent(it) },
+        deleteEvent = { deleteEventById(it) },
     )
 
     private lateinit var binding: FragmentHomeBinding
@@ -52,17 +54,29 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun observableData(){
+    private fun observableData() {
         viewModel.events.observe(viewLifecycleOwner) { list ->
             adapter.setData(list)
         }
     }
 
-    fun deleteEventById(id: Int){
-        lifecycleScope.launch{
+    fun deleteEventById(id: Int) {
+        lifecycleScope.launch {
             viewModel.deleteFolderById(id)
             delay(100)
             viewModel.getAllEvents()
+        }
+    }
+
+    fun participantEvent(id: Int) {
+        lifecycleScope.launch {
+            viewModel.participantEvent(
+                ParticipantsEvent(
+                    id = 0,
+                    login = "Egor",
+                    eventId = id
+                )
+            )
         }
     }
 }

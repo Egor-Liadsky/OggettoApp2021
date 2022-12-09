@@ -1,5 +1,6 @@
 package com.android.oggettoapp.adapters.event
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -12,6 +13,7 @@ import com.android.oggettoapp.data.local.entity.EventEntity
 import com.android.oggettoapp.databinding.ItemEventBinding
 
 class EventAdapter(
+    private val participateEvent: (item: Int) -> Unit,
     private val deleteEvent: (item: Int) -> Unit
 ) : RecyclerView.Adapter<EventAdapter.EventHolder>() {
 
@@ -19,15 +21,17 @@ class EventAdapter(
 
     class EventHolder(
         private val binding: ItemEventBinding,
+        private val participateEvent: (item: Int) -> Unit,
         private val deleteEvent: (item: Int) -> Unit
     ) :
         RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(item: EventEntity) {
             binding.title.text = item.title
             binding.description.text = item.description
-            binding.telegram.text = item.telegram
-            binding.date.text = item.date
-            binding.createDate.text = item.createDate
+            binding.telegram.text = "Telegram: ${item.telegram}"
+            binding.date.text = "Начало: ${item.date}"
+            binding.createDate.text = "Создано: ${item.createDate}"
 
             binding.itemCard.setOnLongClickListener {
                 showPopup(binding.itemCard, item)
@@ -40,10 +44,14 @@ class EventAdapter(
             popup.inflate(R.menu.event_menu)
             popup.setOnMenuItemClickListener { item: MenuItem? ->
                 when (item?.itemId) {
-                    R.id.editFile -> {
-//                    renameFile(item1.id)
+                    R.id.participateEvent -> {
+                        participateEvent(item1.id)
+                        Log.e("ID", item1.id.toString())
                     }
-                    R.id.deleteFile -> {
+                    R.id.editEvent -> {
+                        // TODO( Добавить функцию редактирования события )
+                    }
+                    R.id.deleteEvent -> {
                         deleteEvent(item1.id)
                         Log.e("DELETE", "OKEY")
                     }
@@ -57,7 +65,7 @@ class EventAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventHolder {
         val inflater = ItemEventBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return EventHolder(inflater, deleteEvent)
+        return EventHolder(inflater, participateEvent, deleteEvent)
     }
 
     override fun onBindViewHolder(holder: EventHolder, position: Int) {

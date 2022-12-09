@@ -27,4 +27,8 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideEventDao(db: OggettoRoomDatabase) = db.eventDao()
+
+    @Provides
+    @Singleton
+    fun provideUserDao(db: OggettoRoomDatabase) = db.userDao()
 }

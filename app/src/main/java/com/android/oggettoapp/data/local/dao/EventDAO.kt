@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.android.oggettoapp.data.local.entity.EventEntity
+import com.android.oggettoapp.data.local.entity.ParticipantsEvent
 
 @Dao
 interface EventDAO {
@@ -17,4 +18,7 @@ interface EventDAO {
 
     @Query("DELETE FROM events WHERE id=:id")
     suspend fun deleteEventById(id: Int)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun participantEvent(participantEvent: ParticipantsEvent)
 }
